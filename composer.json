@@ -1,0 +1,25 @@
+{
+    "name": "hocza/laravel-mailtrans",
+    "description": "MailTrans help you to implement multilingual emails within Laravel",
+    "keywords": ["laravel","mail","translation","multilingual"],
+    "homepage": "http://hocza.com",
+    "authors": [
+        {
+            "name": "Jozsef Hocza",
+            "email": "jozsef@hocza.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.5"
+    },
+    "autoload": {
+       "psr-4": {
+         "Hocza\\MailTrans\\": "src/Package"
+        }
+    },
+    "license": "MIT"
+    
+}
