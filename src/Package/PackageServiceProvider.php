@@ -45,9 +45,10 @@ class PackageServiceProvider extends ServiceProvider {
     {
         $this->mergeConfigFrom( __DIR__.'/../config/config.php', $this->packageName);
 
-       $this->app->singleton(MailTrans::class, function ($app) {
+        $this->app->singleton(MailTrans::class, function ($app) {
              return new MailTrans(config($this->packageName));
         });
+        $this->app->alias(MailTrans::class, 'mailTrans');
     }
 
 }
