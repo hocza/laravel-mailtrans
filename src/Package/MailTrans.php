@@ -17,7 +17,7 @@ class MailTrans
     {
         $subject = $mail->compileSubject($data);
         $body = $mail->compileBody($data);
-        \Mail::send($mail->view_name, ['body' => $body], function ($message) use($subject, $recipient_email, $recipient_name) {
+        \Mail::send($mail->view_name, ['body' => $body], function ($message) use($mail, $subject, $recipient_email, $recipient_name) {
 
             $message->from($mail->sender_email, $mail->sender_name);
 
