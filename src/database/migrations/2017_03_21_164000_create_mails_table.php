@@ -22,6 +22,9 @@ class CreateMailsTable extends Migration
             $table->text('body');
             $table->text('body_trans')->nullable();
             $table->string('view_name')->default('mailtrans.default');
+
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
