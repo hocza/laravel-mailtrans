@@ -17,6 +17,8 @@ class Mail extends Model
         'body',
         'body_trans',
         'template_path',
+        'title',
+        'description'
     ];
 
     protected $casts = [
