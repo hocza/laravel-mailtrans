@@ -24,7 +24,7 @@ class MailTrans
             $message->subject($subject);
             if (!is_null($mail->attachments) && is_array($mail->attachments)) {
                 foreach ($mail->attachments as $file) {
-                    $message->attach($file);
+                    $message->attach(storage_path('app/'.$file));
                 }
             }
 

@@ -57,7 +57,11 @@ class Mail extends Model
     }
 
     public function setAttachmentsAttribute($value) {
-        $this->attributes['attachments'] = serialize($value);
+        if ($value == null) {
+            $this->attributes['attachments'] = null;
+        } else {
+            $this->attributes['attachments'] = serialize($value);
+        }
     }
 
     public function getAttachmentsAttribute() {
