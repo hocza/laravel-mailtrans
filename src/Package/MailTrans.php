@@ -13,17 +13,19 @@ class MailTrans
         $this->default_lang = $config['default_lang'];
     }
 
-    public function sendMail(Mail $mail, $data, $recipient_email, $recipient_name = "", $attachment = null)
+    public function sendMail(Mail $mail, $data, $recipient_email, $recipient_name = "")
     {
         $subject = $mail->compileSubject($data);
         $body = $mail->compileBody($data);
-        \Mail::send($mail->view_name, ['body' => $body], function ($message) use($mail, $subject, $recipient_email, $recipient_name, $attachment) {
+        \Mail::send($mail->view_name, ['body' => $body], function ($message) use($mail, $subject, $recipient_email, $recipient_name) {
 
             $message->from($mail->sender_email, $mail->sender_name);
 
             $message->subject($subject);
-            if ($attachment !== null) {
-                $message->attach($attachment);
+            if (!is_null($mail->attachments) && is_array($mail->attachments)) {
+                foreach ($mail->attachments as $file) {
+                    $message->attach($file);
+                }
             }
 
             $message->to($recipient_email,$recipient_name);

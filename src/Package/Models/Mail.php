@@ -18,12 +18,14 @@ class Mail extends Model
         'body_trans',
         'template_path',
         'title',
-        'description'
+        'description',
+        'attachments'
     ];
 
     protected $casts = [
         'subject_trans' => 'array',
         'body_trans' => 'array',
+        'attachments' => 'array',
     ];
 
     public function getSubjectAttribute($value)
@@ -52,6 +54,14 @@ class Mail extends Model
     public function compileBody(array $data)
     {
         return $this->fillPlaceholders($this->body, $data);
+    }
+
+    public function setAttachmentsAttribute($value) {
+        $this->attributes['attachments'] = serialize($value);
+    }
+
+    public function getAttachmentsAttribute() {
+        return unserialize($this->attributes['attachments']);
     }
 
     protected function fillPlaceholders($string, $variables)
